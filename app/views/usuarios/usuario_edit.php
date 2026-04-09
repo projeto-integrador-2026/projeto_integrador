@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Projeto Integrador • Novo Usuário</title>
+    <title>Projeto Integrador • <?= isset($usuario['id']) ? 'Editar' : 'Novo' ?> Usuário</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
@@ -81,7 +81,7 @@
             toggleSenha.addEventListener('click', function() {
                 const type = senhaInput.getAttribute('type') === 'password' ? 'text' : 'password';
                 senhaInput.setAttribute('type', type);
-
+                
                 iconSenha.classList.toggle('bi-eye');
                 iconSenha.classList.toggle('bi-eye-slash');
             });

@@ -15,14 +15,12 @@ CREATE TABLE IF NOT EXISTS jogadores (
 
 CREATE TABLE IF NOT EXISTS usuarios (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    nome_usuario VARCHAR(50) NOT NULL UNIQUE,
+    nome_usuario VARCHAR(50) NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     senha VARCHAR(255) NOT NULL,
     perfil VARCHAR(20) NOT NULL DEFAULT 'usuario',
     criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
 
 INSERT INTO jogadores 
 (nome, data_nascimento, nacionalidade, altura, peso, pe_dominante, posicao, time, imagem)
@@ -86,3 +84,6 @@ VALUES ('admin', 'admin@email.com', '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbco
 
 -- admin@email.com 
 -- admin123
+
+CREATE TABLE IF NOT EXISTS empregos ();
+
