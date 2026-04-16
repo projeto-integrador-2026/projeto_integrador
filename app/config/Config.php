@@ -9,6 +9,10 @@ if (DEV_ENVIRONMENT == true) {
     error_reporting(E_ALL);
 }
 
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
 //Configuração do Sistema
 define('APP_NAME', 'Projeto Integrador');
 define('URL_BASE', 'http://localhost:8080');
@@ -19,4 +23,3 @@ define('DB_NAME', 'db_projeto_integrador');
 
 define('DB_USER', 'root');
 define('DB_PASS', 'bancodedados');
-

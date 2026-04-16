@@ -9,7 +9,6 @@ use app\services\JogadorService;
 
 class JogadorController extends Controller
 {
-
     private JogadorService $service;
 
     public function __construct()
@@ -21,7 +20,6 @@ class JogadorController extends Controller
     {
 
         $data['lista'] = $this->service->getJogadores();
-
         $this->view('jogadores/jogadores_list', $data);
     }
 
@@ -41,11 +39,15 @@ class JogadorController extends Controller
 
     public function criar()
     {
+        $this->autenticacaoRequired();
+
         $this->view('jogadores/jogadores_create', []);
     }
 
     public function salvar()
     {
+        $this->adminRequired();
+
         $nome = $_POST['nome'];
         $nascimento = $_POST['dataNascimento'];
         $nacionalidade = $_POST['nacionalidade'];
@@ -69,10 +71,9 @@ class JogadorController extends Controller
         $jogador->setTime($time);
         $jogador->setImagem($imagem);
 
-        //print_r($jogador);
-        //exit;
-
         $this->service->saveJogador($jogador);
+
+        $this->redirect(URL_BASE . '/jogadores');
     }
 
     public function redirecionarTeste()

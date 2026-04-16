@@ -62,4 +62,16 @@ class Usuario
     {
         $this->criadoEm = $criadoEm;
     }
+    
+    public static function arrayParaObjeto(array $usuario){
+
+        return new self (
+            $usuario['id'],
+            $usuario['nome_usuario'],
+            $usuario['email'],
+            $usuario['senha'],
+            $usuario['perfil']
+        );
+
+    }
 }
