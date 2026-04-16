@@ -25,8 +25,12 @@ $router->get('/usuarios/cadastrar', 'UsuarioController@cadastrar');
 $router->post('/usuarios/salvar', 'UsuarioController@salvar');
 $router->get('/usuarios/editar', 'UsuarioController@editar');
 $router->post('/usuarios/atualizar', 'UsuarioController@atualizar');
-
 $router->get('/usuarios/excluir', 'UsuarioController@excluir');
+
+//Autenticacao
+$router->get('/login', 'AutenticacaoController@login');
+$router->post('/logar', 'AutenticacaoController@logar');
+
 
 
 $router->get('/teste', 'JogadorController@redirecionarTeste');
