@@ -33,7 +33,7 @@
                         <div class="col-md-4">
                             <div class="bg-light rounded d-flex align-items-center justify-content-center border" style="aspect-ratio: 1/1; overflow: hidden;">
                                 <?php if (!empty($jogador['imagem'])): ?>
-                                    <img src="<?= URL_BASE ?>/uploads/<?= $jogador['imagem'] ?>" alt="<?= $jogador['nome'] ?>" class="img-fluid w-100 h-100" style="object-fit: cover;">
+                                    <img src="<?= URL_BASE ?>/assets/uploads/<?= $jogador['imagem'] ?>" alt="<?= $jogador['nome'] ?>" class="img-fluid w-100 h-100" style="object-fit: cover;">
                                 <?php else: ?>
                                     <div class="text-center text-muted">
                                         <i class="bi bi-person-fill" style="font-size: 5rem;"></i>

@@ -6,10 +6,13 @@ use DateTimeImmutable;
 use app\core\Controller;
 use app\models\Jogador;
 use app\services\JogadorService;
+use app\services\UploadService;
+use Exception;
 
 class JogadorController extends Controller
 {
     private JogadorService $service;
+    private UploadService $uploadService;
 
     public function __construct()
     {
@@ -39,14 +42,16 @@ class JogadorController extends Controller
 
     public function criar()
     {
-        $this->autenticacaoRequired();
-
+        //$this->autenticacaoRequired();
         $this->view('jogadores/jogadores_create', []);
     }
 
     public function salvar()
     {
-        $this->adminRequired();
+
+        $this->uploadService = new UploadService();
+
+        //$this->adminRequired();
 
         $nome = $_POST['nome'];
         $nascimento = $_POST['dataNascimento'];
@@ -56,8 +61,25 @@ class JogadorController extends Controller
         $peDominante = $_POST['peDominante'];
         $posicao = $_POST['posicao'];
         $time = $_POST['time'];
-        $imagem = $_POST['imagem'] ?? '';
+        
+        $imagemUploaded = $_FILES['imagem'] ?? '';
 
+        if ($imagemUploaded && $imagemUploaded['error'] == UPLOAD_ERR_OK) {
+
+            try {
+                $imagem = $this->uploadService->upload($imagemUploaded);
+
+            } catch(Exception $e){
+                $data['erros']['imagem'] = $e->getMessage();
+            }
+        }
+
+        if(isset($data['erros']) && sizeof($data['erros']) > 0){
+
+            $this->view('jogadores/jogadores_create', $data);
+            return;
+
+        }
 
         $jogador = new Jogador();
 

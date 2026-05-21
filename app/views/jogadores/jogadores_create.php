@@ -114,7 +114,14 @@
                                     <label for="imagem" class="form-label">Foto</label>
                                     <input type="file" class="form-control" id="imagem" name="imagem" accept="image/*">
 
+                                    <?php if(isset($erros['imagem'])): ?>
+                                        <span>
+                                            <?= $erros['imagem'] ?>
+                                        </span>
+                                    <?php endif; ?>
+
                                 </div>
+                                
                             </div>
 
                             <!-- Botão Salvar -->
