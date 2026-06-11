@@ -95,7 +95,7 @@ define('URL_BASE', 'http://localhost/projeto_integrador_apache');
 ```
 *(Se o seu Apache rodar em outra porta, como a 8080, mude para `http://localhost:8080/projeto_integrador_apache`)*.
 
-### Habilitar o `mod_rewrite` e testar
+### Se for necessário habilitar o `mod_rewrite`
 
 Certifique-se de que o módulo de reescrita está ativo e reinicie o Apache:
 ```bash
