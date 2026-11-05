@@ -15,7 +15,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 //Configuração do Sistema
 define('APP_NAME', 'Projeto Integrador');
-define('URL_BASE', 'http://localhost:8080');
+define('URL_BASE', 'https://projeto-integrador.ethiodeploy.app');
 
 define('URL_BASE_CSS', URL_BASE . '/assets/css');
 
@@ -24,8 +24,16 @@ define('STORAGE_PATH', __DIR__ . "/../../storage");
 
 
 //Configurações do Banco de dados
-define('DB_HOST', 'localhost');
-define('DB_NAME', 'db_projeto_integrador');
+//define('DB_HOST', 'localhost');
+define('DB_HOST', getenv('DATABASE_URL'));
 
-define('DB_USER', 'root');
-define('DB_PASS', 'bancodedados');
+//define('DB_NAME', 'db_projeto_integrador');
+//define('DB_NAME', 'db_projeto_integrador');
+
+
+//define('DB_USER', 'root');
+//define('DB_USER', 'root');
+
+//define('DB_PASS', 'bancodedados');
+//define('DB_PASS', 'bancodedados');
+
