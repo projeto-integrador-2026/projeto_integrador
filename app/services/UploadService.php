@@ -16,7 +16,7 @@ class UploadService {
         $this->uploadPath = $path ?? STORAGE_PATH; //salva na pasta storage que em teoria é mais segura
 
         if (!is_dir($this->uploadPath)) {
-            mkdir(UPLOAD_PATH, 0777, true);
+            mkdir(UPLOAD_PATH, 0775, true);
         }
         
     }
