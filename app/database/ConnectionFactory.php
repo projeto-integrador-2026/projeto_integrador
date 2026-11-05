@@ -13,6 +13,9 @@ class ConnectionFactory {
         if (self::$connection == null) {
 
             try {
+
+                print getenv('DATABASE_URL');
+                exit;
                 
                 //$dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME ;
                 self::$connection = self::createConnection(getenv('DATABASE_URL'));
