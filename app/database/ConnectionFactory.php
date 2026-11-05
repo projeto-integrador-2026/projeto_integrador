@@ -13,12 +13,19 @@ class ConnectionFactory {
         if (self::$connection == null) {
 
             try {
-
-                print getenv('DATABASE_URL');
-                exit;
                 
                 //$dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME ;
-                self::$connection = self::createConnection(getenv('DATABASE_URL'));
+                //self::$connection = self::createConnection($dsn);
+
+                $url = parse_url(getenv('DATABASE_URL'));
+
+                $dsn = "mysql:host={$url['host']};port={$url['port']};dbname=" . ltrim($url['path'], '/');
+                
+                self::$connection = new PDO(
+                    $dsn,
+                    $url['user'],
+                    $url['pass']
+                );
                 
             } catch(Exception $e){
                 
