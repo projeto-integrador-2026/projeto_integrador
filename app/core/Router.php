@@ -80,29 +80,43 @@ public function run()
         return $this->routes;
     }
 
+//     private function serveStaticFile($uri)
+// {
+//     $arquivo = realpath(__DIR__ . '/../../public' . $uri);
+
+//     $diretorioPublico = realpath(__DIR__ . '/../../public');
+
+//     // Verifica se o arquivo existe e está dentro de public
+//     if (
+//         !$arquivo ||
+//         !str_starts_with($arquivo, $diretorioPublico . DIRECTORY_SEPARATOR) ||
+//         !is_file($arquivo)
+//     ) {
+//         return false;
+//     }
+
+//     $mime = mime_content_type($arquivo);
+
+//     header("Content-Type: $mime");
+//     header("Content-Length: " . filesize($arquivo));
+
+//     readfile($arquivo);
+
+//     return true;
+// }
+
     private function serveStaticFile($uri)
 {
-    $arquivo = realpath(__DIR__ . '/../../public' . $uri);
+    $caminho = __DIR__ . '/../../public' . $uri;
 
-    $diretorioPublico = realpath(__DIR__ . '/../../public');
+    var_dump([
+        'uri' => $uri,
+        'caminho_calculado' => $caminho,
+        'arquivo_existe' => file_exists($caminho),
+        'caminho_real' => realpath($caminho)
+    ]);
 
-    // Verifica se o arquivo existe e está dentro de public
-    if (
-        !$arquivo ||
-        !str_starts_with($arquivo, $diretorioPublico . DIRECTORY_SEPARATOR) ||
-        !is_file($arquivo)
-    ) {
-        return false;
-    }
-
-    $mime = mime_content_type($arquivo);
-
-    header("Content-Type: $mime");
-    header("Content-Length: " . filesize($arquivo));
-
-    readfile($arquivo);
-
-    return true;
+    exit;
 }
 
 }
