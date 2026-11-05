@@ -32,6 +32,13 @@ class Router
         $uri  = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
         $method = strtolower($_SERVER['REQUEST_METHOD']);
 
+        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+
+        // Ignora requisições de arquivos estáticos
+        if (preg_match('/\.(jpg|jpeg|png|gif|css|js|ico|svg|pdf)$/i', $uri)) {
+            return;
+        }
+
         foreach ($this->routes as $route) {
         
             if ($route['route'] == $uri && $route['method'] == $method) {
