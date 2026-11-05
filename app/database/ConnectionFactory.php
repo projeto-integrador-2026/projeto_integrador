@@ -14,8 +14,8 @@ class ConnectionFactory {
 
             try {
                 
-                $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME ;
-                self::$connection = self::createConnection($dsn);
+                //$dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME ;
+                self::$connection = self::createConnection(DB_HOST);
                 
             } catch(Exception $e){
                 
