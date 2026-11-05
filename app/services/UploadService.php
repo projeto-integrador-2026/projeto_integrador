@@ -62,17 +62,17 @@ class UploadService {
                  . DIRECTORY_SEPARATOR
                  . $novoArquivo;
 
-        var_dump([
-            'STORAGE_PATH' => STORAGE_PATH,
-            'UPLOAD_PATH' => UPLOAD_PATH,
-            'uploadPath' => $this->uploadPath,
-            'destino' => $destino,
-            'diretorio_existe' => is_dir($this->uploadPath),
-            'arquivo_existe' => file_exists($destino),
-            'gravavel' => is_writable($this->uploadPath)
-        ]);
+        // var_dump([
+        //     'STORAGE_PATH' => STORAGE_PATH,
+        //     'UPLOAD_PATH' => UPLOAD_PATH,
+        //     'uploadPath' => $this->uploadPath,
+        //     'destino' => $destino,
+        //     'diretorio_existe' => is_dir($this->uploadPath),
+        //     'arquivo_existe' => file_exists($destino),
+        //     'gravavel' => is_writable($this->uploadPath)
+        // ]);
         
-        exit;
+        // exit;
 
         if (move_uploaded_file($file['tmp_name'], $destino)) {
             return $novoArquivo;
