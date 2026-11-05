@@ -27,29 +27,33 @@ class Router
     }
 
 
-    public function run()
-    {
-        $uri  = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-        $method = strtolower($_SERVER['REQUEST_METHOD']);
+public function run()
+{
+    $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-        $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    // Verifica se é uma requisição de arquivo estático
+    if (preg_match('/\.(jpg|jpeg|png|gif|css|js|svg|ico|pdf)$/i', $uri)) {
 
-        // Ignora requisições de arquivos estáticos
-        if (preg_match('/\.(jpg|jpeg|png|gif|css|js|ico|svg|pdf)$/i', $uri)) {
-            return;
-        }
-
-        foreach ($this->routes as $route) {
-        
-            if ($route['route'] == $uri && $route['method'] == $method) {
-                
-                return $this->dispatch($route);
-            }
+        if ($this->serveStaticFile($uri)) {
+            exit;
         }
 
         http_response_code(404);
-        exit('Rota não encontrada');
+        exit('Arquivo não encontrado');
     }
+
+    $method = strtolower($_SERVER['REQUEST_METHOD']);
+
+    foreach ($this->routes as $route) {
+
+        if ($route['route'] == $uri && $route['method'] == $method) {
+            return $this->dispatch($route);
+        }
+    }
+
+    http_response_code(404);
+    exit('Rota não encontrada');
+}
 
     public function dispatch($route){
 
@@ -75,5 +79,30 @@ class Router
     public function getAllRoutes(){
         return $this->routes;
     }
+
+    private function serveStaticFile($uri)
+{
+    $arquivo = realpath(__DIR__ . '/../../public' . $uri);
+
+    $diretorioPublico = realpath(__DIR__ . '/../../public');
+
+    // Verifica se o arquivo existe e está dentro de public
+    if (
+        !$arquivo ||
+        !str_starts_with($arquivo, $diretorioPublico . DIRECTORY_SEPARATOR) ||
+        !is_file($arquivo)
+    ) {
+        return false;
+    }
+
+    $mime = mime_content_type($arquivo);
+
+    header("Content-Type: $mime");
+    header("Content-Length: " . filesize($arquivo));
+
+    readfile($arquivo);
+
+    return true;
+}
 
 }
