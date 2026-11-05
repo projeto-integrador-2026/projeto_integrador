@@ -22,18 +22,8 @@ define('URL_BASE_CSS', URL_BASE . '/assets/css');
 define('UPLOAD_PATH', __DIR__ . "/../../public/assets/uploads");
 define('STORAGE_PATH', __DIR__ . "/../../storage");
 
-
 //Configurações do Banco de dados
-//define('DB_HOST', 'localhost');
-define('DB_HOST', getenv('DATABASE_URL'));
-
-//define('DB_NAME', 'db_projeto_integrador');
-//define('DB_NAME', 'db_projeto_integrador');
-
-
-//define('DB_USER', 'root');
-//define('DB_USER', 'root');
-
-//define('DB_PASS', 'bancodedados');
-//define('DB_PASS', 'bancodedados');
-
+define('DB_HOST', 'localhost');
+define('DB_NAME', 'db_projeto_integrador');
+define('DB_USER', 'root');
+define('DB_PASS', 'bancodedados');
