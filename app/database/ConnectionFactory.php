@@ -29,19 +29,19 @@ class ConnectionFactory {
                 
             } catch(Exception $e){
                 
-                print("Não foi possível acessar o banco:  " . DB_NAME);
-                print("<br>O erro foi: ". $e->getMessage());
-                print("<br>Tentando inicializar o banco de dados...");
+                // print("Não foi possível acessar o banco:  " . DB_NAME);
+                print($e->getMessage());
+                // print("<br>Tentando inicializar o banco de dados...");
 
-                $dsn = "mysql:host=" . DB_HOST;
-                self::$connection = self::createConnection($dsn);
+                // $dsn = "mysql:host=" . DB_HOST;
+                // self::$connection = self::createConnection($dsn);
 
-                $databaseInit = new DatabaseInitializer();
-                $databaseInit->init(self::$connection);
+                // $databaseInit = new DatabaseInitializer();
+                // $databaseInit->init(self::$connection);
 
-                // Re-attempt after initialization
-                $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME ;
-                self::$connection = self::createConnection($dsn);
+                // // Re-attempt after initialization
+                // $dsn = "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME ;
+                // self::$connection = self::createConnection($dsn);
 
             }
         }
