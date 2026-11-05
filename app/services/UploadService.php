@@ -14,18 +14,27 @@ class UploadService {
 
     private string $uploadPath;
 
+    // public function __construct(string|null $path = null)
+    // {
+    //     $this->uploadPath = $path ?? STORAGE_PATH;
+
+    //     if (!is_dir($this->uploadPath)) {
+    //         if (!mkdir($this->uploadPath, 0775, true) && !is_dir($this->uploadPath)) {
+    //             throw new Exception("Não foi possível criar o diretório de uploads.");
+    //         }
+    //     }
+
+    //     if (!is_writable($this->uploadPath)) {
+    //         throw new Exception("O diretório de uploads não possui permissão de escrita.");
+    //     }
+    // }
+
     public function __construct(string|null $path = null)
     {
-        $this->uploadPath = $path ?? STORAGE_PATH;
-
+        $this->uploadPath = $path ?? '/tmp/projeto-integrador-uploads';
+    
         if (!is_dir($this->uploadPath)) {
-            if (!mkdir($this->uploadPath, 0775, true) && !is_dir($this->uploadPath)) {
-                throw new Exception("Não foi possível criar o diretório de uploads.");
-            }
-        }
-
-        if (!is_writable($this->uploadPath)) {
-            throw new Exception("O diretório de uploads não possui permissão de escrita.");
+            mkdir($this->uploadPath, 0775, true);
         }
     }
 
